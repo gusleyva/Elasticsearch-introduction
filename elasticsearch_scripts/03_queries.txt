@@ -1,0 +1,87 @@
+* Get users where full_name has "user1"
+curl -X GET "localhost:9200/users/_doc/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "term": {
+      "full_name": "user1"
+    }
+  }
+}
+'
+
+* Get users where full_name contains "test":
+curl -X GET "localhost:9200/users/_doc/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "term": {
+      "full_name": "test"
+    }
+  }
+}
+'
+
+* Filter all users by company id and from there get a specific:
+curl -X GET "localhost:9200/users/_doc/_search?pretty" \
+-H 'Content-Type: application/json' \
+-d '
+{
+  "query": {
+    "bool": {
+      "must": {
+        "terms"	: {
+          "company_id" : [
+            "1001"
+          ]
+        }
+      },
+      "filter": {
+        "term": {
+          "user_id": "11002"
+        }
+      }
+    }
+  }
+}
+'
+
+* Get users by specific company id and organization id
+curl -X GET "localhost:9200/users/_search?pretty" \
+-H 'Content-Type: application/json' \
+-d '
+{
+  "query": {
+    "bool" : {
+      "must" : [
+        {
+          "terms" : {
+            "company_id" : [
+              "1001"
+            ]
+          }
+        }
+      ],
+       "filter" : [
+	      {
+	        "nested" : {
+	          "query" : {
+	            "bool" : {
+	              "must" : [
+	                {
+	                  "term" : {
+	                    "organizations.org_id" : {
+	                      "value" : "22001",
+	                      "boost" : 1.0
+	                    }
+	                  }
+	                }
+	              ]
+	            }
+	          },
+	          "path" : "organizations"
+	        }
+	      }
+	    ]
+    }
+  }
+}
+'

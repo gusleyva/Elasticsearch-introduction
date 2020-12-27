@@ -1,0 +1,54 @@
+#Record 1
+curl -X PUT "localhost:9200/users/_doc/1?pretty" -H 'Content-Type: application/json' -d'
+{
+  "company_id": "1001",
+  "user_id": "11001",
+  "full_name": "Test user1",
+  "status": "New",
+	"organizations": [
+		{
+			"org_id": "22001",
+			"org_admin": "true",
+			"org_name": "org 1"
+		}
+	],
+	"last_accessed": 1603813571757
+}
+'
+
+#Record 2
+curl -X PUT "localhost:9200/users/_doc/2?pretty" -H 'Content-Type: application/json' -d'
+{
+  "company_id": "1001",
+  "user_id": "11002",
+  "full_name": "Test uSEr2",
+  "status": "Active",
+	"organizations": [
+		{
+			"org_id": "22001",
+			"org_admin": "true",
+			"org_name": "org 1"
+		}
+	],
+	"last_accessed": 1603813571757
+}
+'
+
+#Record 3
+curl -X PUT "localhost:9200/users/_doc/3?pretty" -H 'Content-Type: application/json' -d'
+{
+  "company_id": "1001",
+  "user_id": "11003",
+  "full_name": "Test USER1",
+  "status": "Enable",
+	"organizations": [
+		{
+			"org_id": "22001",
+			"org_admin": "true",
+			"org_name": "org 1"
+		}
+	],
+	"last_accessed": 1603813571757
+}
+'
+```
