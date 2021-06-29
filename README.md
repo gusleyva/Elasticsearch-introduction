@@ -53,7 +53,22 @@ $ docker-compose ps
 #Stop the service
 $ docker-compose stop
 ```
+## Indexes
+### List indexes
+```
+curl -X GET "localhost:9200/_cat/indices?v=true&s=index&pretty"
+```
+
+### Delete index
+```
+curl -XDELETE "localhost:9200/employee_ent?pretty"
+```
 ## Mapping
+### Mapping structure
+```
+curl -X GET "localhost:9200/users/_mapping?pretty"
+```
+
 ### Mapping structure
 [Mapping](01_mapping.txt)
 * Execute the following curl instruction from a console 
@@ -131,7 +146,9 @@ curl -XGET http://localhost:9200/users/_mapping?pretty
 ### Mapping
 [Analyzer](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-analyzers.html)  
 Analyzer is a setting/configuration that we could implement at one or multiple fields in our mapping in order to have a specific behavior.
+* Analyzer only works with TEXT types
 * Standard Tokenizer - Divides text into terms on word boundaries. It removes most punctuation symbols.
+* Add tokenizer to remove white spaces and handle all stream of char as individual words
 * Filter will help us to evaluate everything in lowercase -> 'NAME', 'name' and 'namE' will be the same. 
 
 [Mapping](https://www.elastic.co/guide/en/elasticsearch/reference/7.10/mapping.html)  
