@@ -1,0 +1,55 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "full_name_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "company_id": {
+        "type":  "keyword"
+      },
+      "user_id": {
+        "type":  "keyword"
+      },
+      "full_name": {
+        "type":  "text",
+        "analyzer": "full_name_analyzer",
+        "fields": {
+          "keyword": {
+            "type": "keyword"
+          }
+        }
+      },
+      "status": {
+        "type":  "keyword"
+      },
+      "organizations": {
+        "type":  "nested",
+        "properties": {
+          "org_id": {
+            "type": "text"
+          },
+          "org_admin": {
+            "type": "boolean"
+          },
+          "org_name": {
+            "type": "text"
+          }
+        }
+      },
+      "last_accessed": {
+        "type":  "date"
+      }
+    }
+  }
+}
