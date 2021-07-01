@@ -1,0 +1,14 @@
+{
+  "company_id": "1001",
+  "user_id": "11003",
+  "full_name": "Test USER1",
+  "status": "Enable",
+  "organizations": [
+    {
+      "org_id": "22001",
+      "org_admin": "true",
+      "org_name": "org 1"
+    }
+  ],
+  "last_accessed": 1603813571757
+}

@@ -1,3 +1,18 @@
+* DELETE
+curl -XDELETE "localhost:9200/users?pretty"
+
+* LIST INDEXES
+curl -X GET "localhost:9200/_cat/indices?v=true&s=index&pretty"
+
+* GET ALL
+curl -X GET "localhost:9200/users/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+      "match_all": {}
+  }
+}
+'
+
 * Get users where full_name has "user1"
 curl -X GET "localhost:9200/users/_doc/_search?pretty" -H 'Content-Type: application/json' -d'
 {
